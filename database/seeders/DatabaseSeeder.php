@@ -15,9 +15,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // ------Seed command to create 10 dummy user
-        \App\Models\User::factory(5)->create();
+        // \App\Models\User::factory(5)->create();
+        \App\Models\User::create([
+            'email' => 'admin@admin.com',
+            'password' => 'password'
+        ]);
         // ------SEEDING USING FACTORY
         Listing::factory(6)->create();
+
+
         // ------MANUAL SEEDING
         // Listing::create([
         //     'title' => 'Laravel Senior Developer',

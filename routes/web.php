@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ListingController;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Listing;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,10 +36,33 @@ Route::get('/listings/create', [ListingController::class, 'create']);
 // STORE LISTING DATA 
 Route::post('/listings', [ListingController::class, 'store']);
 
+// SHOW EDIT FORM
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 
+// UPDATE LISTING
+Route::put('/listings/{listing}', [ListingController::class, 'update']);
+
+// DELETE LISTING
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 
 // SINGLE LISTING
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+// SHOW REGISTER/CREATE FORM
+Route::get('/register', [UserController::class, 'create']);
+
+// CREATE NEW USER
+Route::post('/users', [UserController::class, 'store']);
+
+// LOG USER OUT
+Route::post('/logout', [UserController::class, 'logout']);
+
+// SHOW LOGIN FORM
+Route::get('/login', [UserController::class, 'login']);
+
+// LOGIN USER
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
 
 // Route::get('/hello', function () {
 //     return 'Hello World';
