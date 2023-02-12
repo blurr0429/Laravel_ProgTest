@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -12,15 +13,18 @@ class ListingController extends Controller
     public function index()
     {
         return view('listings.index', [
-            'listings' =>  Listing::latest()->filter(request(['tag', 'search']))->paginate(4)
+            'listings' =>  Listing::latest()->filter(request(['tag', 'search']))->paginate(10)
         ]);
     }
 
     //SHOW SINGLE LISTING
-    public function show(Listing $listing)
+    public function show(Listing $listing, Employee $employee)
     {
+        // dd(Employee::paginate(10));
         return view('listings.show', [
-            'listing' => $listing
+            'listing' => $listing,
+            'employee' => $employee,
+            'employees' =>  Employee::all()
         ]);
     }
 
@@ -34,13 +38,9 @@ class ListingController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'title' => 'required',
-            'company' => ['required', Rule::unique('listings', 'company')],
-            'location' => 'required',
+            'name' => ['required', Rule::unique('listings', 'name')],
             'website' => 'required',
-            'email' => ['required', 'email'],
-            'tags' => 'required',
-            'description' => 'required'
+            'email' => ['required', 'email']
         ]);
 
         if ($request->hasFile('logo')) {
@@ -55,7 +55,7 @@ class ListingController extends Controller
 
         Listing::create($formFields);
         // TO SHOW FLASH MESSAGE ->with('message' , 'Listing created Successfully')
-        return redirect('/')->with('message', 'Listing created Successfully');
+        return redirect('/')->with('message', 'Company Added Successfully');
     }
 
     // SHOW EDIT FORM
@@ -68,13 +68,9 @@ class ListingController extends Controller
     public function update(Request $request, Listing $listing)
     {
         $formFields = $request->validate([
-            'title' => 'required',
-            'company' => ['required'],
-            'location' => 'required',
+            'name' => ['required'],
             'website' => 'required',
-            'email' => ['required', 'email'],
-            'tags' => 'required',
-            'description' => 'required'
+            'email' => ['required', 'email']
         ]);
 
         if ($request->hasFile('logo')) {
@@ -99,4 +95,22 @@ class ListingController extends Controller
         $listing->delete();
         return redirect('/')->with('message', 'Listing deleted successfully');
     }
+
+
+
+    // // SHOW ALL EMPLOYEES
+    // public function indexEmployee()
+    // {
+    //     return view('listings.show', [
+    //         'employees' =>  Employee::all()
+    //     ]);
+    // }
+
+    // //SHOW SINGLE EMPLOYEE
+    // public function showEmployee(Employee $employee)
+    // {
+    //     return view('listings.show', [
+    //         'employee' => $employee
+    //     ]);
+    // }
 }

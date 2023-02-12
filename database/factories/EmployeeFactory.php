@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Listing;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ListingFactory extends Factory
+class EmployeeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,9 +15,11 @@ class ListingFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->sentence(),
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
+            'companyId' => $this->faker->numberBetween(1, Listing::count()),
             'email' => $this->faker->companyEmail(),
-            'website' => $this->faker->url()
+            'phone' => $this->faker->phoneNumber()
         ];
     }
 }

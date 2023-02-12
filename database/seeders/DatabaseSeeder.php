@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Listing;
+use App\Models\Employee;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,10 +20,13 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(5)->create();
         \App\Models\User::create([
             'email' => 'admin@admin.com',
-            'password' => 'password'
+            'email_verified_at' => now(),
+            'password' =>  bcrypt('password'),
+            'remember_token' => Str::random(10)
         ]);
         // ------SEEDING USING FACTORY
-        Listing::factory(6)->create();
+        Listing::factory(15)->create();
+        Employee::factory(500)->create();
 
 
         // ------MANUAL SEEDING

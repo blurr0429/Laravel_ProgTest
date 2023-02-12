@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeesController;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,11 +28,29 @@ use App\Http\Controllers\ListingController;
 // destroy - Delete listing  
 
 
+
+
+
 // ALL LISTINGS
 Route::get('/', [ListingController::class, 'index']);
 
 //SHOW CREATE FORM
 Route::get('/listings/create', [ListingController::class, 'create']);
+
+//SHOW CREATE FORM EMPLOYEES
+Route::get('/employees/create-employee', [EmployeesController::class, 'create']);
+
+// STORE EMPLOYEE DATA 
+Route::post('/employees', [EmployeesController::class, 'store']);
+
+// SHOW EDIT FORM EMPLOYEES
+Route::get('/employees/{employee}/edit-employee', [EmployeesController::class, 'edit']);
+
+// UPDATE EMPLOYEES
+Route::put('/employees/{employee}', [EmployeesController::class, 'update']);
+
+// DELETE EMPLOYEE
+Route::delete('/employees/{employee}', [EmployeesController::class, 'destroy']);
 
 // STORE LISTING DATA 
 Route::post('/listings', [ListingController::class, 'store']);
@@ -62,6 +81,13 @@ Route::get('/login', [UserController::class, 'login']);
 
 // LOGIN USER
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// SHOW ALL EMPLOYEES
+// Route::get('/listings/{listing}', [EmployeesController::class, 'index']);
+
+// SINGLE EMPLOYEE
+// Route::get('/listings/{listing}', [EmployeesController::class, 'show']);
+
 
 
 // Route::get('/hello', function () {

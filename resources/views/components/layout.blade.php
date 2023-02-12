@@ -37,14 +37,8 @@
                 @auth
                 <li>
                     <span class="font-bold uppercase">
-                        Welcome {{auth()->user()->name}}
+                        Welcome Admin
                     </span>
-                </li>
-                <li>
-                    <a href="/listings/manage" class="hover:text-laravel"
-                        ><i class="fa-solid fa-gear"></i>
-                        Manage Listings</a
-                    >
                 </li>
                 <li>
                     <form class="inline" method="POST" action="/logout">
@@ -56,11 +50,11 @@
                 </li>
                 {{-- SHOW IF NOT LOGGED IN  --}}
                 @else
-                <li>
+                {{-- <li>
                     <a href="/register" class="hover:text-laravel"
                         ><i class="fa-solid fa-user-plus"></i> Register</a
                     >
-                </li>
+                </li> --}}
                 <li>
                     <a href="/login" class="hover:text-laravel"
                         ><i class="fa-solid fa-arrow-right-to-bracket"></i>
@@ -84,7 +78,7 @@
     <a
         href="/listings/create"
         class="absolute top-1/3 right-10 bg-black text-white py-2 px-5"
-        >Post Job</a
+        >Add a Company</a
     >
 </footer>
 
