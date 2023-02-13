@@ -1,10 +1,11 @@
 <x-layout>
     <x-card class="p-10 max-w-lg mx-auto mt-24">
+        
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
                 Login
             </h2>
-            <p class="mb-4">Log into your account to post gigs</p>
+            <p class="mb-4">Log into your account to access Admin Privileges </p>
         </header>
 
         <form method="POST" action="/users/authenticate">
@@ -44,23 +45,28 @@
                 @enderror
             </div>
 
-            <div class="mb-6">
+            <div class="mb-6 flex justify-center">
                 <button
                     type="submit"
-                    class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
+                    class="bg-yellow-300 text-black rounded py-2 px-4 hover:bg-black hover:text-white "
                 >
                     Sign In
                 </button>
             </div>
 
-            <div class="mt-8">
+            {{-- <div class="mt-8">
                 <p>
                     Don't have an account?
                     <a href="/register" class="text-laravel"
                         >Register</a
                     >
                 </p>
-            </div>
+            </div> --}}
         </form>
+    <div
+    class="absolute top-0 left-0 w-full h-full opacity-20 bg-no-repeat bg-cover bg-center -z-10"
+    style="background-image: url('images/login-bg.jpg')"
+    ></div>
     </x-card>
+    
 </x-layout>

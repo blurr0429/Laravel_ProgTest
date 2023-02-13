@@ -55,7 +55,7 @@ class ListingController extends Controller
 
         Listing::create($formFields);
         // TO SHOW FLASH MESSAGE ->with('message' , 'Listing created Successfully')
-        return redirect('/')->with('message', 'Company Added Successfully');
+        return redirect('/listings')->with('message', 'Company Added Successfully');
     }
 
     // SHOW EDIT FORM
@@ -85,7 +85,7 @@ class ListingController extends Controller
 
         $listing->update($formFields);
         // TO SHOW FLASH MESSAGE ->with('message' , 'Listing created Successfully')
-        return back()->with('message', 'Listing updated Successfully');
+        return back()->with('message', 'Company updated Successfully');
     }
 
 
@@ -93,24 +93,6 @@ class ListingController extends Controller
     public function destroy(Listing $listing)
     {
         $listing->delete();
-        return redirect('/')->with('message', 'Listing deleted successfully');
+        return redirect('/listings')->with('message', 'Company deleted successfully');
     }
-
-
-
-    // // SHOW ALL EMPLOYEES
-    // public function indexEmployee()
-    // {
-    //     return view('listings.show', [
-    //         'employees' =>  Employee::all()
-    //     ]);
-    // }
-
-    // //SHOW SINGLE EMPLOYEE
-    // public function showEmployee(Employee $employee)
-    // {
-    //     return view('listings.show', [
-    //         'employee' => $employee
-    //     ]);
-    // }
 }

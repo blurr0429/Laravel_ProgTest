@@ -32,7 +32,9 @@ use App\Http\Controllers\ListingController;
 
 
 // ALL LISTINGS
-Route::get('/', [ListingController::class, 'index']);
+
+
+Route::get('/listings', [ListingController::class, 'index']);
 
 //SHOW CREATE FORM
 Route::get('/listings/create', [ListingController::class, 'create']);
@@ -77,7 +79,7 @@ Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 // SHOW LOGIN FORM
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/', [UserController::class, 'login']);
 
 // LOGIN USER
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);

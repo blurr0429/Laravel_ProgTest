@@ -80,12 +80,12 @@
 
         <div class="mb-6">
             <button
-                class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
+                class="bg-yellow-300 text-balck rounded py-2 px-4 hover:bg-black hover:text-white"
             >
                 Add Company
             </button>
 
-            <a href="/" class="text-black ml-4"> Back </a>
+            <a href="/listings" class="text-black ml-4"> Back </a>
         </div>
     </form>
 </x-card>

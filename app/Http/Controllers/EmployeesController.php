@@ -50,7 +50,7 @@ class EmployeesController extends Controller
 
         Employee::create($formFields);
         // TO SHOW FLASH MESSAGE ->with('message' , 'Listing created Successfully')
-        return redirect('/')->with('message', 'Employee Added Successfully');
+        return redirect('/listings')->with('message', 'Employee Added Successfully');
     }
 
     // UPDATE LISTING DATA
@@ -73,6 +73,6 @@ class EmployeesController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        return redirect('/')->with('message', 'Employee fired successfully');
+        return redirect('/listings')->with('message', 'Employee fired successfully');
     }
 }
