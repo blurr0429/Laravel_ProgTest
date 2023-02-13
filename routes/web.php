@@ -32,8 +32,6 @@ use App\Http\Controllers\ListingController;
 
 
 // ALL LISTINGS
-
-
 Route::get('/listings', [ListingController::class, 'index']);
 
 //SHOW CREATE FORM

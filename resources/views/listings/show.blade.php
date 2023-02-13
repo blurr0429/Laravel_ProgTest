@@ -5,7 +5,7 @@
 ><i class="fa-solid fa-arrow-left"></i> Back
 </a>
 <div class="mx-4">
-<x-card class="p-10">
+<x-card class="p-10 ">
     <div
         class="flex flex-col items-center justify-center text-center"
     >
@@ -15,12 +15,28 @@
             alt=""
         />
 
-        <h3 class="text-2xl mb-2">{{$listing->name}}</h3>
-        <div class="text-xl font-bold mb-4">{{$listing->email}}</div>
+        <h3 class="text-2xl mb-2">{{$listing->id}} . {{$listing->name}}</h3>
+        <div class="text-xl font-bold ">{{$listing->email}}</div>
 
-        {{-- <li class="flex items-center justify-center bg-black text-white rounded-xl py-1 px-3 mr-2 text-xs"> --}}
-            {{-- <div class="text-xl font-bold mb-4">Employees: </div> --}}
-            {{-- {{dd($employee)}} --}}
+            <div class="flex items-center justify-center gap-4 p-5">
+                <div class="border-2 border-solid border-green-500 rounded-full p-2 text-green-500 hover:text-black hover:bg-green-300">
+                    <a href="/employees/create-employee">
+                        <i class="fa-solid fa-plus"></i> Add an Employee
+                    </a>
+                </div>
+                <div class="border-2 border-solid border-blue-500 rounded-full p-2 text-blue-500 hover:text-black hover:bg-blue-300">
+                    <a href="/listings/{{$listing->id}}/edit">
+                        <i class="fa-solid fa-pencil "></i> Edit Company Details
+                    </a>
+                </div>
+                <div class="border-2 border-solid border-red-500 rounded-full p-2 text-red-500 hover:text-black hover:bg-red-300">
+                    <form method="POST" action="/listings/{{$listing->id}}">
+                        @csrf
+                        @method('DELETE')
+                        <button><i class="fa-solid fa-trash"></i> Delete Company</button>
+                    </form> 
+                </div>
+            </div>
 
             <div class="flex">
 
@@ -29,28 +45,26 @@
                         Employees
                     </h3><br>
                     <div class="text-xl mb-4 ">
-                    <div class="grid grid-cols-4 gap-4">
-                        @foreach ($employees as $employee) 
-                            @if($employee->companyId == $listing->id)
-                            <div class="bg-gray-300 rounded p-2">
-                                <a href="/employees/{{$employee->id}}/edit-employee" class="inline float-left">
-                                    <i class="fa-solid fa-pencil"></i>
-                                </a>
+                        <div class="grid grid-cols-4 gap-4">
+                            @foreach ($employees as $employee) 
+                                @if($employee->companyId == $listing->id)
+                                <div class="bg-gray-300 rounded-full p-2">
+                                    <a href="/employees/{{$employee->id}}/edit-employee" class="inline float-left pl-5 hover:text-blue-500">
+                                        <i class=" fa-solid fa-pencil"></i>
+                                    </a>
 
-                                <form method="POST" action="/employees/{{$employee->id}}" class="inline float-left pl-5">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="text-red-500"><i class="fa-solid fa-trash"></i></button>
-                                </form>
+                                    <form method="POST" action="/employees/{{$employee->id}}" class="inline float-left pl-5">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="text-black-500 hover:text-red-500"><i class="fa-solid fa-trash"></i></button>
+                                    </form>
 
-                                <p class="float-left pl-5">{{$employee->firstname . ' ' . $employee->lastname}}</p> 
-                                <br>
-                            </div>
-                            @endif
-                        @endforeach
-                    </div>
-                        
-
+                                    <p class="float-left pl-5">{{$employee->firstname . ' ' . $employee->lastname}}</p> 
+                                    <br>
+                                </div>
+                                @endif
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -95,7 +109,7 @@
         </div>
     </div>
 </x-card>
-<x-card>
+{{-- <x-card>
     <div class="flex items-center justify-center gap-4">
         <div class="border-2 border-solid border-green-500 rounded-full p-2 text-green-500 hover:text-black hover:bg-green-300">
             <a href="/employees/create-employee">
@@ -116,7 +130,7 @@
         </div>
     </div>
 
-</x-card>
+</x-card> --}}
 </div>
 
 </x-layout>
